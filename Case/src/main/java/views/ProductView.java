@@ -54,7 +54,7 @@ public class ProductView {
             System.out.println("\u001B[38;2;255;165;0m║   3. AMERICA          ║");
             System.out.println("\u001B[38;2;255;165;0m║   4. AFRICA           ║");
             System.out.println("\u001B[38;2;255;165;0m╚═══════════════════════╝");
-            System.out.println("Nhập tên loại sản phẩm ");
+            System.out.println("Nhập nguồn gốc cổ vật ");
             System.out.print("\t ➺ ");
             try {
                 luachon = Integer.parseInt(scanner.nextLine());
@@ -102,7 +102,7 @@ public class ProductView {
         }
         int quantity;
         while (true) {
-            System.out.println("Nhập số lượng cổ vật: ");
+            System.out.println("═╬════► Nhập số lượng cổ vật: ");
             System.out.print("\t➺ ");
             try {
                 quantity = Integer.parseInt(scanner.nextLine());
@@ -118,7 +118,7 @@ public class ProductView {
         }
         long price;
         while (true) {
-            System.out.println("Nhập giá cổ vật: ");
+            System.out.println("═╬════► Nhập giá cổ vật: ");
             System.out.print("\t➺ ");
             try {
                 price = Long.parseLong(scanner.nextLine());
@@ -132,7 +132,7 @@ public class ProductView {
                 System.out.println();
             }
         }
-        System.out.println("Nhập mô tả cổ vật: ");
+        System.out.println("═╬════► Nhập mô tả cổ vật: ");
         System.out.print(" \t➺ ");
         String description = scanner.nextLine();
         Status status = Status.SOLD;
@@ -145,7 +145,7 @@ public class ProductView {
 
     public void showProductBoss() {
         List<Product> products = productService.getProducts();
-        System.out.println("Danh sách cổ vật : ");
+        System.out.println("═╬════► Danh sách cổ vật : ");
         System.out.println("\t\t\t\t═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         System.out.printf("\t\t\t\t%-10s %-25s %-30s %-15s %-25s %-25s\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
         for (Product product : products) {
@@ -159,7 +159,7 @@ public class ProductView {
     public void showProductGuest() {
 
         List<Product> products = productService.getProducts();
-        System.out.println("Danh sách cổ vật");
+        System.out.println("═╬════► Danh sách cổ vật");
         System.out.println("\t\t\t\t═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         System.out.printf("\t\t\t\t%-10s %-25s %-30s %-15s %-25s %-25s\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
         for (Product product : products) {
@@ -171,7 +171,7 @@ public class ProductView {
 
     public void showProductDescriptionBoss() {
         List<Product> products = productService.getProducts();
-        System.out.println("Mô tả cổ vật");
+        System.out.println("═╬════► Mô tả cổ vật");
         System.out.println("\t\t\t\t═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         System.out.printf("\t\t\t\t%-10s %-25s %-30s %-50s\n", "Mã", "Loại cổ vật", "Tên cổ vật", "Mô tả");
         for (Product product : products) {
@@ -183,7 +183,7 @@ public class ProductView {
 
     public void showProductDescriptionGuest() {
         List<Product> products = productService.getProducts();
-        System.out.println("Mô tả cổ vật");
+        System.out.println("═╬════► Mô tả cổ vật");
         System.out.println("\t\t\t\t═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         System.out.printf("\t\t\t\t%-10s %-25s %-30s %-50s\n", "Mã", "Loại cổ vật", "Tên cổ vật", "Mô tả");
         for (Product product : products) {
@@ -196,7 +196,7 @@ public class ProductView {
     public void sortASC() {
         List<Product> p = productService.getProducts();
         p.sort(new PriceSortASC());
-        System.out.println("Danh sách cổ vật");
+        System.out.println("═╬════► Danh sách cổ vật");
         System.out.println("\t\t\t\t═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         System.out.printf("\t\t\t\t%-10s %-25s %-30s %-15s %-25s %-25s\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
         for (Product product : p) {
@@ -209,7 +209,7 @@ public class ProductView {
     public void sortDESC() {
         List<Product> p = productService.getProducts();
         p.sort(new PriceSortDESC());
-        System.out.println("Danh sách cổ vật");
+        System.out.println("═╬════► Danh sách cổ vật");
         System.out.println("\t\t\t\t═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         System.out.printf("\t\t\t\t%-10s %-25s %-30s %-15s %-25s %-25s\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "số lượng", "giá", "trạng thái");
         for (Product product : p) {
@@ -227,7 +227,7 @@ public class ProductView {
         System.out.println("\u001B[38;2;255;165;0m║   3. AMERICA          ║");
         System.out.println("\u001B[38;2;255;165;0m║   4. AFRICA           ║");
         System.out.println("\u001B[38;2;255;165;0m╚═══════════════════════╝");
-        System.out.print("Nhập số tương ứng với Nguồn gốc cổ vật cần tìm (1-4): ");
+        System.out.print("Bạn muốn tìm loại cổ vật có nguồn gốc nào? ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         String type;
@@ -260,7 +260,7 @@ public class ProductView {
             }
         }
         if (!found) {
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t ✖ Không có cổ vật này ✖");
+            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t ✖ Không có món đồ này ✖");
         }
         System.out.println("\t\t\t\t═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════");
         menu.guest();
@@ -274,7 +274,7 @@ public class ProductView {
         System.out.println("\u001B[38;2;255;165;0m║   3. AMERICA          ║");
         System.out.println("\u001B[38;2;255;165;0m║   4. AFRICA           ║");
         System.out.println("\u001B[38;2;255;165;0m╚═══════════════════════╝");
-        System.out.print("Nhập số tương ứng với Nguồn gốc cổ vật cần tìm (1-4): ");
+        System.out.print("Bạn muốn tìm loại cổ vật có nguồn gốc nào? ");
         int choice = scanner.nextInt();
         scanner.nextLine();
         String type;
@@ -465,7 +465,7 @@ public class ProductView {
         System.out.println("\u001B[38;2;255;165;0m║   3. AMERICA          ║");
         System.out.println("\u001B[38;2;255;165;0m║   4. AFRICA           ║");
         System.out.println("\u001B[38;2;255;165;0m╚═══════════════════════╝");
-        System.out.println("Chọn Role: ");
+        System.out.println("Chọn Type: ");
         System.out.print("\t➺ ");
         int options;
         try {
@@ -503,7 +503,7 @@ public class ProductView {
         System.out.println("\u001B[38;2;255;165;0m║   2. NOT SOLD         ║");
         System.out.println("\u001B[38;2;255;165;0m╚═══════════════════════╝");
         System.out.println("Chọn Status: ");
-        System.out.print(" ⭆ ");
+        System.out.print(" ═╬════► ");
         int options;
         try {
             options = Integer.parseInt(scanner.nextLine());
@@ -532,4 +532,6 @@ public class ProductView {
     public void noChange() {
         System.out.println(" \uD83D\uDC80 Nếu không thay đổi gì thì nhập: -1 \uD83D\uDC80 ");
     }
+
+
 }

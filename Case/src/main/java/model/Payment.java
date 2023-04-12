@@ -29,7 +29,9 @@ public class Payment {
     }
 
     public Payment(String rawPay) {
-        String[] strings = rawPay.split(",");
+        // 7;1000;Pham Sinh Nhat;0559941292;Hue;300000000
+        // String [] = {"7;1000;Pham Sinh Nhat;0559941292;Hue;300000000"}
+        String[] strings = rawPay.split(";");
         this.id = Integer.parseInt(strings[0]);
         this.quantity = Integer.parseInt(strings[1]);
         this.name = strings[2];

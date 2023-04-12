@@ -1,9 +1,10 @@
 package test;
 
+
 import java.util.Random;
 import java.util.Scanner;
 
-public class test2 {
+public class test1 {
     public static void main(String[] args) throws InterruptedException {
 
         Scanner scanner = new Scanner(System.in);
@@ -61,7 +62,12 @@ public class test2 {
                 highestBid = playerBid1;
                 highestBidder = -1;
             }
-//
+//            for (int i = 0; i < computerBids.length; i++) {
+//                if (computerBids[i] > highestBid) {
+//                    highestBid = computerBids[i];
+//                    highestBidder = i;
+//                }
+//            }
 
             if (highestBid >= 9999) {
                 System.out.println("Thương Nhân " + (computerIndex + 1) + " đã chiến thắng với giá " + highestBid);
@@ -70,4 +76,3 @@ public class test2 {
         }
     }
 }
-

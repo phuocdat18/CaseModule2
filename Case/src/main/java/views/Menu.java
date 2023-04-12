@@ -139,6 +139,28 @@ public class Menu {
         }
     }
 
+    public static void thamgiadaugia() {
+        thamgia();
+        try {
+            System.out.println("\nChọn chức năng ");
+            System.out.print("\t➺ ");
+            int number = scanner.nextInt();
+            switch (number) {
+                case 1:
+                    paymentView.daugia();
+                    break;
+                case 2:
+                    exit();
+                    break;
+                default:
+                    System.out.println("Chọn chức năng không đúng! Vui lòng chọn lại");
+                    guest();
+            }
+        } catch (Exception e) {
+            System.out.println("Nhập sai! vui lòng nhập lại");
+            guest();
+        }
+    }
 
     public static void chon() {
         do {
@@ -173,14 +195,15 @@ public class Menu {
 
     public static void menuMain() {
         System.out.println();
-        System.out.println("* * * * --Giao diện-- * * * * * *");
-        System.out.println("*                               *");
-        System.out.println("*       1.    Chủ               *");
-        System.out.println("*       2.    Khách             *");
-        System.out.println("*       3.    Thoát             *");
-        System.out.println("*                               *");
-        System.out.println("* * * * * * * * * * * * * * * * *");
+        System.out.println("\u001B[35m★ ★ ★ ★ --Giao diện-- ★ ★ ★ ★ ★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m                               \u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m       \u001B[36m1.    Chủ   \u001B[0m            \u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m       \u001B[36m2.    Khách \u001B[0m            \u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m       \u001B[36m3.    Thoát \u001B[0m            \u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m                               \u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★\u001B[0m");
     }
+
 
     public static void exit() {
         System.out.println("\t\t\t\t\t\tCám ơn quý khách");
@@ -221,6 +244,20 @@ public static void menuGuest() {
     System.out.println("\u001B[35m║   \u001B[1m9. Thoát                               \u001B[0m\u001B[35m║");
     System.out.println("\u001B[35m║                                          ║");
     System.out.println("\u001B[35m╚══════════════════════════════════════════╝\u001B[0m");
+}
+
+public static void thamgia() {
+
+    System.out.println("\u001B[35m╔══════════════════════════════════════════════════════════╗");
+    System.out.println("\u001B[35m║                                                          ║");
+    System.out.println("\u001B[35m║   \u001B[1m    Rất tiếc món đồ của bạn không có tại cửa hàng      \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1mTuy nhiên chúng tôi biết hiện tại đang có 1 phiên đấu  \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1mgiá rất hấp dẫn, có thể sẽ có món đồ của bạn đang tìm. \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1mBạn có muốn tham gia phiên đấu giá không               \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m1. Tham gia đấu giá                                    \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m2. Thoát                                               \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║                                                          ║");
+    System.out.println("\u001B[35m╚══════════════════════════════════════════════════════════╝\u001B[0m");
 }
 
 }

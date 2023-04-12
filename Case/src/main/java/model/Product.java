@@ -23,7 +23,7 @@ public class Product {
     }
 
     public Product(String raw) {
-        String [] strings = raw.split(",");
+        String [] strings = raw.split(";");
         this.id = Integer.parseInt(strings[0]);
         this.type = PType.valueOf(strings[1]);
         this.name = strings[2];
