@@ -50,7 +50,7 @@ public class Menu {
                         paymentView.showAllIncome();
                         break;
                     case 8:
-                        chon();
+                        selectTable();
                         break;
                     case 9:
                         exit();
@@ -97,10 +97,18 @@ public class Menu {
 
     public static void guest() {
         menuGuest();
-        try {
+        int number =0;
+        boolean checkAction = false;
+        do {
             System.out.println("\nChọn chức năng ");
             System.out.print("\t➺ ");
-            int number = scanner.nextInt();
+            try {
+                number = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("Nhập sai! Mời nhập lại");
+                number = 0;
+                continue;
+            }
             switch (number) {
                 case 1:
                     productView.showProductGuest();
@@ -124,83 +132,89 @@ public class Menu {
                     paymentView.buy();
                     break;
                 case 8:
-                    chon();
+                    selectTable();
                     break;
                 case 9:
                     exit();
                     break;
                 default:
                     System.out.println("Chọn chức năng không đúng! Mời chọn lại");
-                    guest();
+                    checkAction = true;
+                    break;
             }
-        } catch (Exception e) {
-            System.out.println("Nhập sai! Mời nhập lại");
-            guest();
-        }
+        }while (!checkAction);
     }
 
-    public static void thamgiadaugia() {
-        thamgia();
-        try {
+    public static void auction() throws InterruptedException {
+        joinAuction();
+        int number =0;
+        boolean checkAction = false;
+        do {
             System.out.println("\nChọn chức năng ");
             System.out.print("\t➺ ");
-            int number = scanner.nextInt();
+            try {
+                number = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("Nhập sai! Mời nhập lại");
+                number = 0;
+                continue;
+            }
             switch (number) {
                 case 1:
-                    paymentView.daugia();
+                    paymentView.auctionProgram();
                     break;
                 case 2:
                     exit();
                     break;
                 default:
                     System.out.println("Chọn chức năng không đúng! Mời chọn lại");
-                    guest();
+                    checkAction = true;
+                    break;
             }
-        } catch (Exception e) {
-            System.out.println("Nhập sai! Mời nhập lại");
-            guest();
-        }
+        }while (!checkAction);
     }
 
-    public static void chon() {
+    public static void selectTable() {
+        menuMain();
+        int number = 0;
+        boolean checkAction = false;
         do {
-            menuMain();
+            System.out.println("\nChọn chức năng ");
+            System.out.print("\t➺ ");
             try {
-                Scanner scanner = new Scanner(System.in);
-                System.out.println("\nChọn chức năng ");
-                System.out.print("\t➺ ");
-                int number = scanner.nextInt();
-                switch (number) {
-                    case 1:
-                        boss();
-                        break;
-                    case 2:
-                        guest();
-                        break;
-                    case 3:
-                        exit();
-                        break;
-                    default:
-                        System.out.println("Chọn chức năng không đúng! Mời chọn lại");
-                        chon();
-                }
-
-            } catch (InputMismatchException io) {
+                String input = scanner.nextLine();
+                number = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
                 System.out.println("Nhập sai! Mời nhập lại");
-            } catch (Exception e) {
-                System.out.println(e.getMessage());
+                continue;
             }
-        } while (true);
+            switch (number) {
+                case 1:
+                    boss();
+                    break;
+                case 2:
+                    guest();
+                    break;
+                case 3:
+                    exit();
+                    break;
+                default:
+                    System.out.println("Chọn chức năng không đúng! Mời chọn lại");
+                    checkAction = true;
+                    break;
+            }
+        } while (!checkAction);
     }
+
     public static void menuMain() {
         System.out.println();
-        System.out.println("\u001B[35m★ ★ ★ ★ ★ ★ ★ ★ ★ ★ --Giao diện-- ★ ★ ★ ★ ★ ★ ★ ★ ★ ★\u001B[0m");
-        System.out.println("\u001B[35m★\u001B[0m                                                        \u001B[35m★\u001B[0m");
-        System.out.println("\u001B[35m★\u001B[0m                     \u001B[36m1.   Chủ    \u001B[0m                       \u001B[35m★\u001B[0m");
-        System.out.println("\u001B[35m★\u001B[0m                     \u001B[36m2.   Khách  \u001B[0m                       \u001B[35m★\u001B[0m");
-        System.out.println("\u001B[35m★\u001B[0m                     \u001B[36m3.   Thoát  \u001B[0m                       \u001B[35m★\u001B[0m");
-        System.out.println("\u001B[35m★\u001B[0m                                                        \u001B[35m★\u001B[0m");
-        System.out.println("\u001B[35m★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★\u001B[0m");
+        System.out.println("\u001B[31m★\u001B[0m \u001B[32m★\u001B[0m \u001B[33m★\u001B[0m \u001B[34m★\u001B[0m \u001B[35m★\u001B[0m \u001B[36m★\u001B[0m \u001B[30m★\u001B[0m \u001B[31m★\u001B[0m \u001B[32m★\u001B[0m \u001B[33m★\u001B[0m --Giao diện-- \u001B[31m★\u001B[0m \u001B[32m★\u001B[0m \u001B[33m★\u001B[0m \u001B[34m★\u001B[0m \u001B[35m★\u001B[0m \u001B[36m★\u001B[0m \u001B[30m★\u001B[0m \u001B[31m★\u001B[0m \u001B[32m★\u001B[0m \u001B[33m★\u001B[0m");
+        System.out.println("\u001B[32m★\u001B[0m                                                        \u001B[34m★\u001B[0m ");
+        System.out.println("\u001B[36m★                     1. Chủ                             ★\u001B[0m");
+        System.out.println("\u001B[32m★                     2. Khách                           ★\u001B[0m");
+        System.out.println("\u001B[31m★                     3. Thoát                           ★\u001B[0m");
+        System.out.println("\u001B[32m★\u001B[0m                                                        \u001B[34m★\u001B[0m ");
+        System.out.println("\u001B[31m★\u001B[0m \u001B[32m★\u001B[0m \u001B[33m★\u001B[0m \u001B[34m★\u001B[0m \u001B[35m★\u001B[0m \u001B[36m★\u001B[0m \u001B[30m★\u001B[0m \u001B[31m★\u001B[0m \u001B[32m★\u001B[0m \u001B[33m★\u001B[0m \u001B[30m★\u001B[0m \u001B[31m★\u001B[0m \u001B[32m★\u001B[0m \u001B[33m★\u001B[0m \u001B[31m★\u001B[0m \u001B[32m★\u001B[0m \u001B[33m★\u001B[0m \u001B[34m★\u001B[0m \u001B[35m★\u001B[0m \u001B[36m★\u001B[0m \u001B[30m★\u001B[0m \u001B[31m★\u001B[0m \u001B[32m★\u001B[0m \u001B[33m★\u001B[0m \u001B[34m★\u001B[0m \u001B[35m★\u001B[0m");
     }
 
 
@@ -211,19 +225,48 @@ public class Menu {
         System.exit(0);
     }
 
+    public static void comeBack() {
+        comeBackStore();
+        int number =0;
+        boolean checkAction = false;
+        do {
+            System.out.println("\nChọn chức năng ");
+            System.out.print("\t➺ ");
+            try {
+                number = scanner.nextInt();
+            } catch (Exception e) {
+                System.out.println("Nhập sai! Mời nhập lại");
+                number = 0;
+                continue;
+            }
+            switch (number) {
+                case 1:
+                    menuGuest();
+                    break;
+                case 2:
+                    exit();
+                    break;
+                default:
+                    System.out.println("Chọn chức năng không đúng! Mời chọn lại");
+                    checkAction = true;
+                    break;
+            }
+        }while (!checkAction);
+    }
+
     public static void menuBoss() {
         System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗");
         System.out.println("\u001B[35m║                      \u001B[1m\u001B[36mGiao diện chủ\u001B[0m                      \u001B[35m║");
         System.out.println("\u001B[35m║                                                         ║");
-        System.out.println("\u001B[35m║   \u001B[1m1. Hiển thị danh sách Cổ Vật                          \u001B[0m\u001B[35m║");
-        System.out.println("\u001B[35m║   \u001B[1m2. Hiển thị mô tả Cổ vật                              \u001B[0m\u001B[35m║");
-        System.out.println("\u001B[35m║   \u001B[1m3. Thêm Cổ vật vào danh sách                          \u001B[0m\u001B[35m║");
-        System.out.println("\u001B[35m║   \u001B[1m4. Sửa thông tin Cổ vật                               \u001B[0m\u001B[35m║");
-        System.out.println("\u001B[35m║   \u001B[1m5. Tìm kiếm Cổ vật theo tên                           \u001B[0m\u001B[35m║");
-        System.out.println("\u001B[35m║   \u001B[1m6. Tìm kiếm Cổ vật theo loại                          \u001B[0m\u001B[35m║");
-        System.out.println("\u001B[35m║   \u001B[1m7. Xem doanh thu                                      \u001B[0m\u001B[35m║");
-        System.out.println("\u001B[35m║   \u001B[1m8. Quay lại                                           \u001B[0m\u001B[35m║");
-        System.out.println("\u001B[35m║   \u001B[1m9. Thoát                                              \u001B[0m\u001B[35m║");
+        System.out.println("\u001B[35m║   \u001B[1m\u001B[36m1. Hiển thị danh sách Cổ Vật     \u001B[0m                     \u001B[0m\u001B[35m║");
+        System.out.println("\u001B[35m║   \u001B[1m\u001B[36m2. Hiển thị mô tả Cổ vật         \u001B[0m                     \u001B[0m\u001B[35m║");
+        System.out.println("\u001B[35m║   \u001B[1m\u001B[36m3. Thêm Cổ vật vào danh sách     \u001B[0m                     \u001B[0m\u001B[35m║");
+        System.out.println("\u001B[35m║   \u001B[1m\u001B[36m4. Sửa thông tin Cổ vật          \u001B[0m                     \u001B[0m\u001B[35m║");
+        System.out.println("\u001B[35m║   \u001B[1m\u001B[36m5. Tìm kiếm Cổ vật theo tên      \u001B[0m                     \u001B[0m\u001B[35m║");
+        System.out.println("\u001B[35m║   \u001B[1m\u001B[36m6. Tìm kiếm Cổ vật theo loại     \u001B[0m                     \u001B[0m\u001B[35m║");
+        System.out.println("\u001B[35m║   \u001B[1m\u001B[36m7. Xem doanh thu                 \u001B[0m                     \u001B[0m\u001B[35m║");
+        System.out.println("\u001B[35m║   \u001B[1m\u001B[36m8. Quay lại                      \u001B[0m                     \u001B[0m\u001B[35m║");
+        System.out.println("\u001B[35m║   \u001B[1m\u001B[36m9. Thoát                         \u001B[0m                     \u001B[0m\u001B[35m║");
         System.out.println("\u001B[35m║                                                         ║");
         System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
     }
@@ -232,27 +275,40 @@ public static void menuGuest() {
     System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗");
     System.out.println("\u001B[35m║                    \u001B[1m\u001B[36mGiao diện Khách\u001B[0m                      \u001B[35m║");
     System.out.println("\u001B[35m║                                                         ║");
-    System.out.println("\u001B[35m║   \u001B[1m1. Hiển thị danh sách Cổ vật                          \u001B[0m\u001B[35m║");
-    System.out.println("\u001B[35m║   \u001B[1m2. Hiển thị mô tả Cổ vật                              \u001B[0m\u001B[35m║");
-    System.out.println("\u001B[35m║   \u001B[1m3. Tìm kiếm Cổ vật theo tên                           \u001B[0m\u001B[35m║");
-    System.out.println("\u001B[35m║   \u001B[1m4. Tìm kiếm Cổ vật theo loại                          \u001B[0m\u001B[35m║");
-    System.out.println("\u001B[35m║   \u001B[1m5. Sắp xếp Cổ vật theo giá tăng dần                   \u001B[0m\u001B[35m║");
-    System.out.println("\u001B[35m║   \u001B[1m6. Sắp xếp Cổ vật theo giá giảm dần                   \u001B[0m\u001B[35m║");
-    System.out.println("\u001B[35m║   \u001B[1m7. Mua Cổ vật                                         \u001B[0m\u001B[35m║");
-    System.out.println("\u001B[35m║   \u001B[1m8. Quay lại                                           \u001B[0m\u001B[35m║");
-    System.out.println("\u001B[35m║   \u001B[1m9. Thoát                                              \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m\u001B[36m1. Hiển thị danh sách Cổ vật          \u001B[0m                \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m\u001B[36m2. Hiển thị mô tả Cổ vật              \u001B[0m                \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m\u001B[36m3. Tìm kiếm Cổ vật theo tên           \u001B[0m                \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m\u001B[36m4. Tìm kiếm Cổ vật theo loại          \u001B[0m                \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m\u001B[36m5. Sắp xếp Cổ vật theo giá tăng dần   \u001B[0m                \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m\u001B[36m6. Sắp xếp Cổ vật theo giá giảm dần   \u001B[0m                \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m\u001B[36m7. Mua Cổ vật                         \u001B[0m                \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m\u001B[36m8. Quay lại                           \u001B[0m                \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m\u001B[36m9. Thoát                              \u001B[0m                \u001B[0m\u001B[35m║");
     System.out.println("\u001B[35m║                                                         ║");
     System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
 }
 
-public static void thamgia() {
-
+public static void joinAuction() {
     System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗");
     System.out.println("\u001B[35m║                                                         ║");
     System.out.println("\u001B[35m║   \u001B[1m    Rất tiếc món đồ của bạn không có tại cửa hàng     \u001B[0m\u001B[35m║");
     System.out.println("\u001B[35m║   \u001B[1mTuy nhiên chúng tôi biết hiện tại đang có 1 phiên đấu \u001B[0m\u001B[35m║");
     System.out.println("\u001B[35m║   \u001B[1mgiá rất hấp dẫn, có thể sẽ có món đồ của bạn đang tìm.\u001B[0m\u001B[35m║");
     System.out.println("\u001B[35m║   \u001B[1mBạn có muốn tham gia phiên đấu giá không              \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m1. Tham gia đấu giá                                   \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1m2. Thoát                                              \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║                                                         ║");
+    System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
+
+}
+
+public static void comeBackStore() {
+
+    System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗");
+    System.out.println("\u001B[35m║                                                         ║");
+    System.out.println("\u001B[35m║   \u001B[1m    Tôi rất tiếc khi bạn không giành lấy được món đồ bạn muốn     \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1mTuy nhiên ở cửa hàng chúng tôi có rất nhiều thứ khác xịn xò hơn \u001B[0m\u001B[35m║");
+    System.out.println("\u001B[35m║   \u001B[1mBạn có muốn quay lại không?\u001B[0m\u001B[35m║");
     System.out.println("\u001B[35m║   \u001B[1m1. Tham gia đấu giá                                   \u001B[0m\u001B[35m║");
     System.out.println("\u001B[35m║   \u001B[1m2. Thoát                                              \u001B[0m\u001B[35m║");
     System.out.println("\u001B[35m║                                                         ║");

@@ -58,12 +58,12 @@ public class PaymentView {
                             break;
                         } else {
                             System.out.println("═╬════► Cổ vật này không có tại đây");
-                            menu.thamgiadaugia();
+                            menu.auction();
                             break;
                         }
                     } else {
                         System.out.println("\t \uD83D\uDC80 Sản phẩm đã hết hàng \uD83D\uDC80");
-                        menu.thamgiadaugia();
+                        menu.auction();
                         break;
                     }
                 } else {
@@ -134,7 +134,7 @@ public class PaymentView {
 
     public void showTotal() {
         System.out.println("═╬════► Danh sách Cổ vật mua");
-        System.out.println("______________________");
+        System.out.println("\u001B[35m══════════════════════\u001B[0m");
         long sum = 0;
         for (int i = 0; i < list.size(); i++) {
             long total;
@@ -143,9 +143,9 @@ public class PaymentView {
             sum += total;
 
         }
-        System.out.println("________________________________________");
+        System.out.println("\u001B[35m════════════════════════════════════════\u001B[0m");
         System.out.println(" ═╬════► Số tiền cần thanh toán: " + format.format(sum));
-        System.out.println("________________________________________");
+        System.out.println("\u001B[35m════════════════════════════════════════\u001B[0m");
         check();
     }
 
@@ -199,6 +199,7 @@ public class PaymentView {
                 default:
                     System.out.println("\t\t\tNhập không đúng! Mời nhập lại");
                     option();
+                    break;
             }
         } catch (Exception e) {
             System.out.println("\t \uD83D\uDC80 lựa chọn phải là 1 số \uD83D\uDC80");
@@ -226,11 +227,13 @@ public class PaymentView {
                 default:
                     System.out.println("Nhập không đúng! Vui lòng nhập lại");
                     check();
+                    break;
             }
         } catch (Exception e) {
             System.out.println("\t \uD83D\uDC80 lựa chọn phải là 1 số \uD83D\uDC80");
             System.out.println();
             check();
+
         }
     }
 
@@ -238,35 +241,35 @@ public class PaymentView {
         System.out.println(" \uD83D\uDC80 Nhập thông tin cá nhân để vận chuyển hàng đến nơi an toàn \uD83D\uDC80");
 
         System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
-        System.out.println("Nhập họ và tên (vd: Trấn Thành) ");
+        System.out.println("Họ và tên (vd: Trấn Thành) ");
         System.out.print("\t➺ ");
         name = scanner.nextLine();
         while (!ValidateUtils.isNameValid(name)) {
-            System.out.println("Tên " + name + " không đúng định dạng." + " Vui lòng nhập lại!" + " (Tên phải viết hoa chữ cái đầu)");
-            System.out.println("Nhập tên (vd: Trấn Thành) ");
+            System.out.println("Tên " + name + " không đúng định dạng." + " Vui lòng nhập lại!" + " (Tên phải có chữ đầu viết hoa)");
+            System.out.println("Tên (vd: Trấn Thành) ");
             System.out.print("\t➺ ");
             name = scanner.nextLine();
         }
-        System.out.println("Nhập số điện thoại (vd: 0559941292): ");
+        System.out.println("Nhập số điện thoại (vd: 0856419555): ");
         System.out.print("\t➺ ");
         phone = scanner.nextLine();
         while (!ValidateUtils.isPhoneValid(phone)) {
             System.out.println("Số " + phone + " của bạn không đúng định dạng. Vui lòng nhập lại! " + "(Số điện thoại bao gồm 10 số và bắt đầu là số 0)");
-            System.out.println("Nhập số điện thoại (vd: 0559941292)");
+            System.out.println("Số điện thoại (vd: 0559941292)");
             System.out.print("\t➺ ");
             phone = scanner.nextLine();
         }
-        System.out.println("Nhập địa chỉ (vd: Huế)");
+        System.out.println("Địa chỉ (vd: Huế)");
         System.out.print("\t➺ ");
         address = scanner.nextLine();
         while (!ValidateUtils.isAddValid(address)) {
-            System.out.println("Nhập địa chỉ ");
+            System.out.println("Địa chỉ ");
             System.out.print("\t➺ ");
             address = scanner.nextLine();
         }
         System.out.println("Chọn phương thức thanh toán");
         System.out.println("Nhập 1 để Thanh toán bằng tiền mặt");
-        System.out.println("Nhập 2 để Thanh toán bằng  ");
+        System.out.println("Nhập 2 để Thanh toán bằng hình thức chuyển khoản ");
         System.out.print("\t➺ ");
         int options1;
         options1 = Integer.parseInt(scanner.nextLine());
@@ -285,13 +288,14 @@ public class PaymentView {
                     System.out.print("\t➺ ");
                     money = scanner.nextLine();
                 }
+                break;
 
 
 
         }
     }
     public void tienMat() {
-
+        afterPay();
     }
 
     public void iBanking() {
@@ -317,6 +321,7 @@ public class PaymentView {
                 default:
                     System.out.println("Nhập không đúng! Vui lòng nhập lại");
                     iBanking();
+                    break;
             }
         } catch (Exception e) {
             e.printStackTrace();
@@ -365,6 +370,7 @@ public class PaymentView {
                 default:
                     System.out.println("Nhập không đúng! Vui lòng nhập lại");
                     check();
+                    break;
             }
         } catch (Exception e) {
             System.out.println("\t \uD83D\uDC80 lựa chọn phải là 1 số \uD83D\uDC80");
@@ -373,7 +379,7 @@ public class PaymentView {
         }
     }
 
-    public void daugia() throws InterruptedException {
+    public void auctionProgram() throws InterruptedException {
         Scanner input = new Scanner(System.in);
         Random random = new Random();
 
@@ -463,7 +469,8 @@ public class PaymentView {
                 System.out.println("\t\t\t\t⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️");
 
                 Thread.sleep(2000);
-                pay();
+                System.out.println("\033[33m\uD83D\uDC80════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\uD83D\uDC80\033[0m");
+                menu.comeBack();
                 return;
 
 
