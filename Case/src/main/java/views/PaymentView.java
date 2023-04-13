@@ -298,7 +298,7 @@ public class PaymentView {
         System.out.println("\u001B[35m★ ★ ★ ★ ★ ★ ★ ★ ★ ★--Thanh  Toán--★ ★ ★ ★ ★ ★ ★ ★ ★ ★\u001B[0m");
         System.out.println("\u001B[35m★\u001B[0m                                                        \u001B[35m★\u001B[0m");
         System.out.println("\u001B[35m★\u001B[0m       \u001B[36mMời Quý khách chuyển khoản vào stk của Đạt Đồ Cổ \u001B[0m\u001B[35m★\u001B[0m");
-        System.out.println("\u001B[35m★\u001B[0m       \u001B[36mSTK: 9856419555 \u001B[0m                                 \u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m       \u001B[36mSTK: 9856419555 Vietcombank \u001B[0m                     \u001B[35m★\u001B[0m");
         System.out.println("\u001B[35m★\u001B[0m       \u001B[36m1. Xác nhận chuyển khoản thành công \u001B[0m             \u001B[35m★\u001B[0m");
         System.out.println("\u001B[35m★\u001B[0m       \u001B[36m2. Hủy mua. Quay lại cửa hàng                    \u001B[0m\u001B[35m★\u001B[0m");
         System.out.println("\u001B[35m★\u001B[0m                                                        \u001B[35m★\u001B[0m");

@@ -194,7 +194,7 @@ public class Menu {
     }
     public static void menuMain() {
         System.out.println();
-        System.out.println("\u001B[35m★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ --Giao diện-- ★ ★ ★ ★ ★ ★ ★ ★ ★\u001B[0m");
+        System.out.println("\u001B[35m★ ★ ★ ★ ★ ★ ★ ★ ★ ★ --Giao diện-- ★ ★ ★ ★ ★ ★ ★ ★ ★ ★\u001B[0m");
         System.out.println("\u001B[35m★\u001B[0m                                                        \u001B[35m★\u001B[0m");
         System.out.println("\u001B[35m★\u001B[0m                     \u001B[36m1.   Chủ    \u001B[0m                       \u001B[35m★\u001B[0m");
         System.out.println("\u001B[35m★\u001B[0m                     \u001B[36m2.   Khách  \u001B[0m                       \u001B[35m★\u001B[0m");
@@ -205,8 +205,8 @@ public class Menu {
 
 
     public static void exit() {
-        System.out.println("\t\t\t\t\t\tCám ơn quý khách");
-        System.out.println("\t\t\t\t\t\t ⚰️ Hẹn gặp lại ⚰️");
+        System.out.println("\t\t\t\t\t  Cám ơn quý khách");
+        System.out.println("\t\t\t\t\t  ⚰️Hẹn gặp lại⚰️");
 
         System.exit(0);
     }

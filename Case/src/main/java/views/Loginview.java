@@ -34,7 +34,7 @@ public class Loginview {
         } catch (IllegalArgumentException e) {
             throw e;
         } catch (Exception e) {
-            throw new RuntimeException("Kiểm tra đường dẫn đến file CSV", e);
+            throw new RuntimeException("Kiểm tra file csv", e);
         }
     }
 }
