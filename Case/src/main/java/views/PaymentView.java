@@ -14,7 +14,7 @@ import java.util.Scanner;
 
 
 public class PaymentView {
-    DecimalFormat format = new DecimalFormat("###,###,###" + " đ");
+    DecimalFormat format = new DecimalFormat("###,###,###" + " $");
     Scanner scanner = new Scanner(System.in);
     PaymentService paymentService = new PaymentService();
     ProductService productService = new ProductService();
@@ -165,22 +165,26 @@ public class PaymentView {
             sum += total;
 
         }
-        System.out.println("________________________________________");
+
+        System.out.println("\u001B[35m════════════════════════════════════════\u001B[0m");
         System.out.println("Số tiền cần thanh toán: " + format.format(sum));
-        System.out.println("________________________________________\n\n");
+        System.out.println("\u001B[35m════════════════════════════════════════\u001B[0m\n\n");
         afterPay();
     }
 
     public void showAllIncome() {
-        System.out.println("===================================");
-        System.out.println("＄ Tổng doanh thu: " + format.format(paymentService.showTotal()));
-        System.out.println("===================================\n\n");
+        System.out.println("\u001B[35m╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╦════════════════════════════════════════════════════╗\u001B[0m");
+        System.out.printf("\u001B[35m║                                     \u001B[36m              TỔNG DOANH THU \u001B[0m                                                      \u001B[35m║\u001B[0m \u001B[36m                  %-13s  \u001B[0m                  \u001B[35m║\u001B[0m", format.format(paymentService.showTotal()));
+        System.out.println("\n\u001B[35m╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╩════════════════════════════════════════════════════╝\u001B[0m");
+        System.out.println("\n");
+        System.out.println("\n");
+        System.out.println("\n");
         menu.boss();
     }
 
     public void option() {
-        System.out.println("\t\t\t\tNhập 1 để mua thêm Cổ vật*");
-        System.out.println("\t\t\t\tNhập 2 để xem tổng tiền");
+        System.out.println("\t\t\t\t1. Mua thêm Cổ vật*");
+        System.out.println("\t\t\t\t2. Xem tổng tiền");
         System.out.print("\t➺ ");
         int options;
         try {
@@ -193,7 +197,7 @@ public class PaymentView {
                     showTotal();
                     break;
                 default:
-                    System.out.println("\t\t\tNhập không đúng! Vui lòng nhập lại");
+                    System.out.println("\t\t\tNhập không đúng! Mời nhập lại");
                     option();
             }
         } catch (Exception e) {
@@ -231,8 +235,9 @@ public class PaymentView {
     }
 
     public void pay() {
-        System.out.println(" ☟ Nhập thông tin cá nhân để vận chuyển hàng đến nơi an toàn ☟");
-        System.out.println("∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘∘");
+        System.out.println(" \uD83D\uDC80 Nhập thông tin cá nhân để vận chuyển hàng đến nơi an toàn \uD83D\uDC80");
+
+        System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
         System.out.println("Nhập họ và tên (vd: Trấn Thành) ");
         System.out.print("\t➺ ");
         name = scanner.nextLine();
@@ -290,10 +295,14 @@ public class PaymentView {
     }
 
     public void iBanking() {
-        System.out.println("Mời bạn chuyển khoản vào stk của Đạt's Store");
-        System.out.println("STK: 9856419555");
-        System.out.println("1. Xác nhận chuyển khoản thành công");
-        System.out.println("2. Hủy mua. Quay lại cửa hàng");
+        System.out.println("\u001B[35m★ ★ ★ ★ ★ ★ ★ ★ ★ ★--Thanh  Toán--★ ★ ★ ★ ★ ★ ★ ★ ★ ★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m                                                        \u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m       \u001B[36mMời Quý khách chuyển khoản vào stk của Đạt Đồ Cổ \u001B[0m\u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m       \u001B[36mSTK: 9856419555 \u001B[0m                                 \u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m       \u001B[36m1. Xác nhận chuyển khoản thành công \u001B[0m             \u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m       \u001B[36m2. Hủy mua. Quay lại cửa hàng                    \u001B[0m\u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★\u001B[0m                                                        \u001B[35m★\u001B[0m");
+        System.out.println("\u001B[35m★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★ ★\u001B[0m");
         System.out.print("\t➺ ");
         int options5;
         try {
