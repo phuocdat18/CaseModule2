@@ -1,7 +1,7 @@
 package model;
 
 public enum Status {
-    SOLD("SOLD"), NOTSOLD("NOTSOLD");
+    NOTSOLD("NOTSOLD"), SOLD("SOLD");
 
     private String value;
 

@@ -21,12 +21,12 @@ public class ProductView {
 
     }
 
-    public void add() {
+    public void add() throws InterruptedException {
         int id;
         while (true) {
             Scanner input = new Scanner(System.in);
-            System.out.println("Nhập mã cổ vật: ");
-            System.out.print("\t➺ ");
+            System.out.println("Nhập mã cổ vật");
+            System.out.print(" ═╬════► ");
             try {
                 id = input.nextInt();
                 if (id > 0) {
@@ -44,18 +44,21 @@ public class ProductView {
                 System.out.println();
             }
         }
+
+
+
         PType type = null;
         int luachon;
         while (true) {
             boolean check = false;
-            System.out.println("\u001B[35m╔═══════════════════════NGUỒN GỐC═════════════════════════╗\u001B[0m");
-            System.out.println("\u001B[35m║   1. EUROPE                                             ║\u001B[0m");
-            System.out.println("\u001B[35m║   2. ASIA                                               ║\u001B[0m");
-            System.out.println("\u001B[35m║   3. AMERICA                                            ║\u001B[0m");
-            System.out.println("\u001B[35m║   4. AFRICA                                             ║\u001B[0m");
+            System.out.println("\u001B[35m╔═══════════════════════\u001B[0m\u001B[36mNGUỒN GỐC\u001B[0m\u001B[35m═════════════════════════╗\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. EUROPE                                             \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. ASIA                                               \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   3. AMERICA                                            \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   4. AFRICA                                             \u001B[0m\u001B[35m║\u001B[0m");
             System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
-            System.out.println("Nhập nguồn gốc cổ vật ");
-            System.out.print("\t ➺ ");
+            System.out.println("Nhập nguồn gốc cổ vật");
+            System.out.print(" ═╬════► ");
             try {
                 luachon = Integer.parseInt(scanner.nextLine());
                 switch (luachon) {
@@ -90,8 +93,8 @@ public class ProductView {
         }
         String name;
         while (true) {
-            System.out.println("Nhập tên Cổ vật: ");
-            System.out.print("\t➺ ");
+            System.out.println("Nhập tên Cổ vật");
+            System.out.print(" ═╬════► ");
             String check = scanner.nextLine();
             if (productService.existProductName(check)) {
                 System.out.println(" \uD83D\uDC80 Tên này đã tồn tại xin nhập tên khác \uD83D\uDC80");
@@ -102,8 +105,8 @@ public class ProductView {
         }
         int quantity;
         while (true) {
-            System.out.println("═╬════► Nhập số lượng cổ vật: ");
-            System.out.print("\t➺ ");
+            System.out.println("Nhập số lượng cổ vật");
+            System.out.print(" ═╬════► ");
             try {
                 quantity = Integer.parseInt(scanner.nextLine());
                 if (quantity > 0) {
@@ -118,8 +121,8 @@ public class ProductView {
         }
         long price;
         while (true) {
-            System.out.println("═╬════► Nhập giá cổ vật: ");
-            System.out.print("\t➺ ");
+            System.out.println("Nhập giá cổ vật");
+            System.out.print(" ═╬════► ");
             try {
                 price = Long.parseLong(scanner.nextLine());
                 if (price > 0) {
@@ -132,8 +135,8 @@ public class ProductView {
                 System.out.println();
             }
         }
-        System.out.println("═╬════► Nhập mô tả cổ vật: ");
-        System.out.print(" \t➺ ");
+        System.out.println("Nhập mô tả cổ vật");
+        System.out.print(" ═╬════► ");
         String description = scanner.nextLine();
         Status status = Status.SOLD;
         Product product = new Product(id, type, name, quantity, price, description, status);
@@ -143,9 +146,9 @@ public class ProductView {
         menu.boss();
     }
 
-    public void showProductBoss() {
+    public void showProductBoss() throws InterruptedException {
         List<Product> products = productService.getProducts();
-        System.out.println("═╬════► Danh sách cổ vật : ");
+        System.out.println("═╬════► Danh sách cổ vật");
         System.out.println("\u001B[35m╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\u001B[0m");
         System.out.printf("\u001B[35m║\u001B[0m \u001B[36m%-10s %-25s %-30s %-15s %-25s %-15s\u001B[0m\u001B[35m║\u001B[0m\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
         for (Product product : products) {
@@ -156,7 +159,7 @@ public class ProductView {
     }
 
 
-    public void showProductGuest() {
+    public void showProductGuest() throws InterruptedException {
 
         List<Product> products = productService.getProducts();
         System.out.println("═╬════► Danh sách cổ vật");
@@ -169,7 +172,7 @@ public class ProductView {
         menu.guest();
     }
 
-    public void showProductDescriptionBoss() {
+    public void showProductDescriptionBoss() throws InterruptedException {
         List<Product> products = productService.getProducts();
         System.out.println("═╬════► Mô tả cổ vật");
         System.out.println("\u001B[35m╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\u001B[0m");
@@ -181,7 +184,7 @@ public class ProductView {
         menu.boss();
     }
 
-    public void showProductDescriptionGuest() {
+    public void showProductDescriptionGuest() throws InterruptedException {
         List<Product> products = productService.getProducts();
         System.out.println("═╬════► Mô tả cổ vật");
         System.out.println("\u001B[35m╔══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╗\u001B[0m");
@@ -193,7 +196,7 @@ public class ProductView {
         menu.guest();
     }
 
-    public void sortASC() {
+    public void sortASC() throws InterruptedException {
         List<Product> p = productService.getProducts();
         p.sort(new PriceAscending());
         System.out.println("═╬════► Danh sách cổ vật");
@@ -203,12 +206,10 @@ public class ProductView {
             System.out.printf("\u001B[35m║\u001B[0m \u001B[36m%-10d %-25s %-30s %-15d %-25s %-15s\u001B[0m\u001B[35m║\u001B[0m\n", product.getId(), product.getType(), product.getName(), product.getQuantity(), format.format(product.getPrice()), product.getStatus());
         }
         System.out.println("\u001B[35m╚══════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╝\u001B[0m");
-
-
         menu.guest();
     }
 
-    public void sortDESC() {
+    public void sortDESC() throws InterruptedException {
         List<Product> p = productService.getProducts();
         p.sort(new PriceDescending());
         System.out.println("═╬════► Danh sách cổ vật");
@@ -222,105 +223,121 @@ public class ProductView {
     }
 
 
-    public void findProductbyTypeGuest() {
-        System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗\u001B[0m");
-        System.out.println("\u001B[35m║   1. EUROPE                                             ║\u001B[0m");
-        System.out.println("\u001B[35m║   2. ASIA                                               ║\u001B[0m");
-        System.out.println("\u001B[35m║   3. AMERICA                                            ║\u001B[0m");
-        System.out.println("\u001B[35m║   4. AFRICA                                             ║\u001B[0m");
-        System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
-        System.out.print("Bạn muốn tìm loại cổ vật có nguồn gốc nào? ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        String type;
-        switch (choice) {
-            case 1:
-                type = "EUROPE";
-                break;
-            case 2:
-                type = "ASIA";
-                break;
-            case 3:
-                type = "AMERICA";
-                break;
-            case 4:
-                type = "AFRICA";
-                break;
-            default:
-                System.out.println("Lựa chọn không hợp lệ!");
-                return;
-        }
-        boolean found = false;
-        List<Product> products = productService.getProducts();
-        System.out.println("Danh sách cổ vật");
-        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
-        System.out.printf("%-10s %-25s %-30s %-15s %-25s %-25s\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
-        for (Product product : products) {
-            if (product.getType().equalsIgnoreCase(type)) {
-                System.out.printf("%-10d %-25s %-30s %-15d %-25s %-25s\n", product.getId(), product.getType(), product.getName(), product.getQuantity(), format.format(product.getPrice()), product.getStatus());
-                found = true;
+    public void findProductbyTypeGuest() throws InterruptedException {
+        int number = 0;
+        try {
+            System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. EUROPE                                             \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. ASIA                                               \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   3. AMERICA                                            \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   4. AFRICA                                             \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
+            System.out.print("Bạn muốn tìm loại cổ vật có nguồn gốc nào? ");
+            System.out.print("\n═╬════► ");
+            String input = scanner.nextLine();
+            number = Integer.parseInt(input);
+            String type;
+            switch (number) {
+                case 1:
+                    type = "EUROPE";
+                    break;
+                case 2:
+                    type = "ASIA";
+                    break;
+                case 3:
+                    type = "AMERICA";
+                    break;
+                case 4:
+                    type = "AFRICA";
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ!");
+                    return;
             }
+            boolean found = false;
+            List<Product> products = productService.getProducts();
+            System.out.println("Danh sách cổ vật");
+            System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+            System.out.printf("\t\t\t\t\u001B[36m%-10s %-25s %-30s %-15s %-25s %-25s\u001B[0m\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
+            for (Product product : products) {
+                if (product.getType().equalsIgnoreCase(type)) {
+                    System.out.printf("\t\t\t\t\u001B[36m%-10d %-25s %-30s %-15d %-25s %-25s\u001B[0m\n", product.getId(), product.getType(), product.getName(), product.getQuantity(), format.format(product.getPrice()), product.getStatus());
+                    found = true;
+                }
+            }
+            if (!found) {
+                System.out.println(" Không có cổ vật này");
+            }
+            System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+            menu.guest();
+        } catch (NumberFormatException e) {
+            System.out.println("Lựa chọn không hợp lệ!");
+            findProductbyTypeGuest();
         }
-        if (!found) {
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  Không có món đồ này ");
-        }
-        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
-        menu.guest();
     }
 
 
-    public void findProductbyTypeBoss() {
-        System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗\u001B[0m");
-        System.out.println("\u001B[35m║   1. EUROPE                                             ║\u001B[0m");
-        System.out.println("\u001B[35m║   2. ASIA                                               ║\u001B[0m");
-        System.out.println("\u001B[35m║   3. AMERICA                                            ║\u001B[0m");
-        System.out.println("\u001B[35m║   4. AFRICA                                             ║\u001B[0m");
-        System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
-        System.out.print("Bạn muốn tìm loại cổ vật có nguồn gốc nào? ");
-        int choice = scanner.nextInt();
-        scanner.nextLine();
-        String type;
-        switch (choice) {
-            case 1:
-                type = "EUROPE";
-                break;
-            case 2:
-                type = "ASIA";
-                break;
-            case 3:
-                type = "AMERICA";
-                break;
-            case 4:
-                type = "AFRICA";
-                break;
-            default:
-                System.out.println("Lựa chọn không hợp lệ!");
-                return;
-        }
-        boolean found = false;
-        List<Product> products = productService.getProducts();
-        System.out.println("Danh sách cổ vật");
-        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
-        System.out.printf("\u001B[36m%-10s %-25s %-30s %-15s %-25s %-25s\u001B[0m\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
-        for (Product product : products) {
-            if (product.getType().equalsIgnoreCase(type)) {
-                System.out.printf("\u001B[36m%-10d %-25s %-30s %-15d %-25s %-25s\u001B[0m\n", product.getId(), product.getType(), product.getName(), product.getQuantity(), format.format(product.getPrice()), product.getStatus());
-                found = true;
+    public void findProductbyTypeBoss() throws InterruptedException {
+        int number = 0;
+        try {
+            System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. EUROPE                                             \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. ASIA                                               \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   3. AMERICA                                            \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   4. AFRICA                                             \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
+            System.out.print("Bạn muốn tìm loại cổ vật có nguồn gốc nào? ");
+            System.out.print("\n═╬════► ");
+            String input = scanner.nextLine();
+            number = Integer.parseInt(input);
+            String type;
+            switch (number) {
+                case 1:
+                    type = "EUROPE";
+                    break;
+                case 2:
+                    type = "ASIA";
+                    break;
+                case 3:
+                    type = "AMERICA";
+                    break;
+                case 4:
+                    type = "AFRICA";
+                    break;
+                default:
+                    System.out.println("Lựa chọn không hợp lệ!");
+                    return;
             }
+            boolean found = false;
+            List<Product> products = productService.getProducts();
+            System.out.println("Danh sách cổ vật");
+            System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+            System.out.printf("\t\t\t\t\u001B[36m%-10s %-25s %-30s %-15s %-25s %-25s\u001B[0m\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
+            for (Product product : products) {
+                if (product.getType().equalsIgnoreCase(type)) {
+                    System.out.printf("\t\t\t\t\u001B[36m%-10d %-25s %-30s %-15d %-25s %-25s\u001B[0m\n", product.getId(), product.getType(), product.getName(), product.getQuantity(), format.format(product.getPrice()), product.getStatus());
+                    found = true;
+                }
+            }
+            if (!found) {
+                System.out.println(" Không có cổ vật này");
+            }
+            System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+            menu.boss();
+        } catch (NumberFormatException e) {
+            System.out.println("Lựa chọn không hợp lệ!");
+            findProductbyTypeBoss();
         }
-        if (!found) {
-            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  Không có cổ vật này ");
-        }
-        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
-        menu.boss();
     }
 
-    public void findProductbyNameBoss() {
-        System.out.print("Nhập tên cổ vật cần tìm: ");
+    public void findProductbyNameBoss() throws InterruptedException {
+        System.out.print("Nhập tên cổ vật cần tìm");
+        System.out.print(" ═╬════► ");
         String name = scanner.nextLine().toUpperCase();
         boolean found = false;
         List<Product> p = productService.getProducts();
         System.out.println("Danh sách cổ vật");
+        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
         System.out.printf("\u001B[36m%-10s %-25s %-30s %-15s %-25s %-25s\u001B[0m\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "số lượng", "giá", "trạng thái");
         for (Product product : p) {
             if (product.getName().toUpperCase().contains(name)) {
@@ -330,13 +347,15 @@ public class ProductView {
         }
         if (!found) {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  Không có cổ vật này ");
+            menu.FindBoss();
         }
         System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
         menu.boss();
     }
 
-    public void findProductbyNameGuest() {
-        System.out.print("Nhập tên cổ vật cần tìm: ");
+    public void findProductbyNameGuest() throws InterruptedException {
+        System.out.print("Nhập tên cổ vật cần tìm");
+        System.out.print(" ═╬════► ");
         String name = scanner.nextLine().toUpperCase();
 
         if (name.isEmpty()) {
@@ -351,49 +370,24 @@ public class ProductView {
         System.out.printf("\u001B[36m%-10s %-25s %-30s %-15s %-25s %-25s\u001B[0m\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
         for (Product product : p) {
             if (product.getName().toUpperCase().contains(name)) {
-                System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
                 System.out.printf("\u001B[36m%-10d %-25s %-30s %-15d %-25s %-25s\u001B[0m\n", product.getId(), product.getType(), product.getName(), product.getQuantity(), format.format(product.getPrice()), product.getStatus());
                 found = true;
             }
         }
         if (!found) {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  Không có cổ vật này ");
+            menu.FindGuest();
         }
         System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
         menu.guest();
-
-
-
-
-
-
-
-//        System.out.print("Nhập tên cổ vật cần tìm: ");
-//        String name = scanner.nextLine().toUpperCase();
-//        boolean found = false;
-//        List<Product> p = productService.getProducts();
-//        System.out.println("Danh sách cổ vật");
-//        System.out.printf("\u001B[36m%-10s %-25s %-30s %-15s %-25s %-25s\u001B[0m\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
-//        for (Product product : p) {
-//            if (product.getName().toUpperCase().contains(name)) {
-//                System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
-//                System.out.printf("\u001B[36m%-10d %-25s %-30s %-15d %-25s %-25s\u001B[0m\n", product.getId(), product.getType(), product.getName(), product.getQuantity(), format.format(product.getPrice()), product.getStatus());
-//                found = true;
-//            }
-//        }
-//        if (!found) {
-//            System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  Không có cổ vật này ");
-//        }
-//        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
-//        menu.guest();
     }
 
-    public void updateProduct() {
+    public void updateProduct() throws InterruptedException {
         int id = 0;
         Product update = null;
         while (true) {
             System.out.println("Nhập ID cổ vật cần sửa");
-            System.out.print("\t➺ ");
+            System.out.print(" ═╬════► ");
             try {
                 id = Integer.parseInt(scanner.nextLine());
                 if (id > 0) {
@@ -412,12 +406,10 @@ public class ProductView {
                 System.out.println();
             }
         }
-        noChange();
         setPType(update);
-        noChange();
         while (true) {
             System.out.println("Nhập tên cần sửa");
-            System.out.print("\t➺ ");
+            System.out.print(" ═╬════► ");
             String name = scanner.nextLine();
             if (!name.equals("-1")) {
                 if (productService.existProductName(name)) {
@@ -430,10 +422,9 @@ public class ProductView {
                 break;
             }
         }
-        noChange();
         while (true) {
             System.out.println("Nhập số lượng cổ vật: ");
-            System.out.print("\t➺ ");
+            System.out.print(" ═╬════► ");
             try {
                 int quantity = Integer.parseInt(scanner.nextLine());
                 if (!(quantity == -1)) {
@@ -451,10 +442,9 @@ public class ProductView {
                 System.out.println();
             }
         }
-        noChange();
         while (true) {
             System.out.println("Nhập giá cổ vật: ");
-            System.out.print("\t➺ ");
+            System.out.print(" ═╬════► ");
             try {
                 long price = Long.parseLong(scanner.nextLine());
                 if (!(price == -1)) {
@@ -472,10 +462,9 @@ public class ProductView {
                 System.out.println();
             }
         }
-        noChange();
         while (true) {
             System.out.println("Nhập mô tả cổ vật: ");
-            System.out.print(" \t➺ ");
+            System.out.print(" ═╬════► ");
             String description = scanner.nextLine();
             if (!(description.equals("-1"))) {
                 update.setDescription(description);
@@ -492,21 +481,29 @@ public class ProductView {
     }
 
 
-    public void setPType(Product product) {
-        System.out.println("\u001B[35m╔════════════════════════SET TYPE═════════════════════════╗\u001B[0m");
-        System.out.println("\u001B[35m║   1. EUROPE                                             ║\u001B[0m");
-        System.out.println("\u001B[35m║   2. ASIA                                               ║\u001B[0m");
-        System.out.println("\u001B[35m║   3. AMERICA                                            ║\u001B[0m");
-        System.out.println("\u001B[35m║   4. AFRICA                                             ║\u001B[0m");
-        System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
-        System.out.println("Chọn Type: ");
-        System.out.print("\t➺ ");
-        int options;
-        try {
-            options = Integer.parseInt(scanner.nextLine());
-            switch (options) {
-                case -1:
-                    break;
+    public void setPType(Product product) throws InterruptedException {
+        int number = 0;
+        boolean checkAction = false;
+        String type = null;
+        do {
+            System.out.println("\u001B[35m╔════════════════════════\u001B[0m\u001B[36mSET TYPE\u001B[0m\u001B[35m═════════════════════════╗\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. EUROPE                                             \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. ASIA                                               \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   3. AMERICA                                            \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   4. AFRICA                                             \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   5. Quay lại menu                                      \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m║\u001B[0m\u001B[36m   6. Thoát                                              \u001B[0m\u001B[35m║\u001B[0m");
+            System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
+            System.out.print("Bạn muốn tìm loại cổ vật có nguồn gốc nào? ");
+            System.out.print(" ═╬════► ");
+            try {
+                String input = scanner.nextLine();
+                number = Integer.parseInt(input);
+            } catch (NumberFormatException e) {
+                System.out.println("\t \uD83D\uDC80 Lựa chọn phải là 1 số \uD83D\uDC80");
+                continue;
+            }
+            switch (number) {
                 case 1:
                     product.setType(PType.EUROPE);
                     break;
@@ -519,22 +516,25 @@ public class ProductView {
                 case 4:
                     product.setType(PType.AFRICA);
                     break;
+                case 5:
+                    menu.boss();
+                    break;
+                case 6:
+                    menu.exitBoss();
+                    break;
                 default:
-                    System.out.println("Nhập không đúng! Vui lòng nhập lại");
-                    setPType(product);
+                    System.out.println("Lựa chọn không hợp lệ!");
+                    checkAction = true;
+                    break;
             }
-        } catch (Exception e) {
-            System.out.println("\t \uD83D\uDC80 Lựa chọn phải là 1 số \uD83D\uDC80");
-            System.out.println("\t═════════════════════════");
-            setPType(product);
-        }
+        } while (!checkAction);
     }
 
 
     public void setStatus(Product product) {
-        System.out.println("\u001B[35m╔════════════════════════SET STATUS═══════════════════════╗\u001B[0m");
-        System.out.println("\u001B[35m║   1. SOLD                                               ║\u001B[0m");
-        System.out.println("\u001B[35m║   2. NOTSOLD                                            ║\u001B[0m");
+        System.out.println("\u001B[35m╔════════════════════════\u001B[0m\u001B[36mSET STATUS\u001B[0m\u001B[35m═══════════════════════╗\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. SOLD                                               \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. NOTSOLD                                            \u001B[0m\u001B[35m║\u001B[0m");
         System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
         System.out.println("Chọn Status: ");
         System.out.print(" ═╬════► ");
@@ -561,10 +561,6 @@ public class ProductView {
             setStatus(product);
         }
 
-    }
-
-    public void noChange() {
-        System.out.println(" \uD83D\uDC80 Nếu không thay đổi gì thì nhập: -1 \uD83D\uDC80 ");
     }
 
 

@@ -47,7 +47,7 @@ public class PaymentView {
 
 
             System.out.println("═╬════► Nhập mã loại Cổ vật muốn mua");
-            System.out.print("\t➺ ");
+            System.out.print(" ═╬════► ");
             try {
                 id1 = Integer.parseInt(scanner.nextLine());
                 if (id1 > 0) {
@@ -77,7 +77,7 @@ public class PaymentView {
         }
         while (true) {
             System.out.println("═╬════► Nhập số lượng cổ vật: ");
-            System.out.print("\t➺ ");
+            System.out.print(" ═╬════► ");
             realQuantity = product.getQuantity();
             try {
                 quantity = Integer.parseInt(scanner.nextLine());
@@ -149,14 +149,13 @@ public class PaymentView {
         check();
     }
 
-    public void showInformation() {
+    public void showInformation() throws InterruptedException {
         System.out.println("Thông tin đơn hàng");
         System.out.println("__________________");
         System.out.println("Tên khách hàng: " + list.get(0).getName());
         System.out.println("Số điện thoại: " + list.get(0).getPhoneNumber());
         System.out.println("Địa chỉ: " + list.get(0).getAddress());
         System.out.println("Danh sách sản phẩm mua");
-        System.out.println("Hình thức thanh toán: " + list.get(0).getMoney());
         long sum = 0;
         for (int i = 0; i < list.size(); i++) {
             long total;
@@ -172,19 +171,19 @@ public class PaymentView {
         afterPay();
     }
 
-    public void showAllIncome() {
+    public void showAllIncome() throws InterruptedException {
         System.out.println("\u001B[35m╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╦════════════════════════════════════════════════════╗\u001B[0m");
         System.out.printf("\u001B[35m║                                     \u001B[36m              TỔNG DOANH THU \u001B[0m                                                      \u001B[35m║\u001B[0m \u001B[36m                  %-13s  \u001B[0m                  \u001B[35m║\u001B[0m", format.format(paymentService.showTotal()));
         System.out.println("\n\u001B[35m╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╩════════════════════════════════════════════════════╝\u001B[0m");
-        System.out.println("\n");
-        System.out.println("\n");
-        System.out.println("\n");
         menu.boss();
     }
 
     public void option() {
-        System.out.println("\t\t\t\t1. Mua thêm Cổ vật*");
-        System.out.println("\t\t\t\t2. Xem tổng tiền");
+        System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. Mua thêm                                           \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. Xem giỏ hàng                                       \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   3. Thoát                                              \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
         System.out.print("\t➺ ");
         int options;
         try {
@@ -195,6 +194,9 @@ public class PaymentView {
                     break;
                 case 2:
                     showTotal();
+                    break;
+                case 3:
+                    menu.exit();
                     break;
                 default:
                     System.out.println("\t\t\tNhập không đúng! Mời nhập lại");
@@ -209,9 +211,13 @@ public class PaymentView {
     }
 
     public void check() {
-        System.out.println("Bạn có muốn thanh toán đơn hàng này không?");
-        System.out.println("nhập 1 để thanh toán");
-        System.out.println("nhập 2 để mua lại");
+        System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   Bạn có muốn thanh toán đơn hàng này không?            \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. Thanh toán                                         \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. Mua lại                                            \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   3. Quay lại menu                                      \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   4. Thoát                                              \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
         System.out.print("\t➺ ");
         int options;
         try {
@@ -223,6 +229,12 @@ public class PaymentView {
                 case 2:
                     list.clear();
                     buy();
+                    break;
+                case 3:
+                    menu.guest();
+                    break;
+                case 4:
+                    menu.exit();
                     break;
                 default:
                     System.out.println("Nhập không đúng! Vui lòng nhập lại");
@@ -237,7 +249,7 @@ public class PaymentView {
         }
     }
 
-    public void pay() {
+    public void pay() throws InterruptedException {
         System.out.println(" \uD83D\uDC80 Nhập thông tin cá nhân để vận chuyển hàng đến nơi an toàn \uD83D\uDC80");
 
         System.out.println("★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★★");
@@ -267,9 +279,14 @@ public class PaymentView {
             System.out.print("\t➺ ");
             address = scanner.nextLine();
         }
-        System.out.println("Chọn phương thức thanh toán");
-        System.out.println("Nhập 1 để Thanh toán bằng tiền mặt");
-        System.out.println("Nhập 2 để Thanh toán bằng hình thức chuyển khoản ");
+
+        System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   Hãy chọn phương thức thanh toán                       \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. Thanh toán bằng tiền mặt                           \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. Thanh toán bằng hình thức chuyển khoản             \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   3. Quay lại menu                                      \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   4. Thoát                                              \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
         System.out.print("\t➺ ");
         int options1;
         options1 = Integer.parseInt(scanner.nextLine());
@@ -279,6 +296,12 @@ public class PaymentView {
                 break;
             case 2:
                 iBanking();
+                break;
+            case 3:
+                menu.guest();
+                break;
+            case 4:
+                menu.exit();
                 break;
             default:
                 System.out.println("Nhập không đúng! Vui lòng nhập lại");
@@ -294,7 +317,7 @@ public class PaymentView {
 
         }
     }
-    public void tienMat() {
+    public void tienMat() throws InterruptedException {
         afterPay();
     }
 
@@ -316,7 +339,7 @@ public class PaymentView {
                     afterPay();
                     break;
                 case 2:
-                    menu.guest();
+                    Menu.guest();
                     break;
                 default:
                     System.out.println("Nhập không đúng! Vui lòng nhập lại");
@@ -332,7 +355,7 @@ public class PaymentView {
     }
 
 
-    public void afterPay() {
+    public void afterPay() throws InterruptedException {
         for (Payment p : list) {
             p.setName(name);
             p.setPhoneNumber(phone);
@@ -347,11 +370,18 @@ public class PaymentView {
             productService.updateQuantity(a, b - c);
         }
         productService.checkExist();
-        System.out.println("\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80 Thanh toán thành công \uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80");
-        System.out.println("Quý khách có muốn kiểm tra thông tin thanh toán không?");
-        System.out.println("1. Xem thông tin thanh toán");
-        System.out.println("2. Quay lại menu");
-        System.out.println("3. Thoát");
+        System.out.println("\t\t\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80 Thanh toán thành công \uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80");
+        System.out.println("\n");
+        System.out.println("\n");
+        Thread.sleep(2000);
+        System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   Quý khách có muốn kiểm tra thông tin thanh toán không \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. Xem thông tin thanh toán                           \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. Quay lại menu                                      \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   3. Thoát                                              \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
+
+
         System.out.print("\t➺ ");
         int options;
         try {
@@ -364,7 +394,6 @@ public class PaymentView {
                     menu.guest();
                     break;
                 case 3:
-                    System.out.println("\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80 See you again \uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\n\n");
                     menu.exit();
                     break;
                 default:
@@ -445,9 +474,9 @@ public class PaymentView {
 
             if (playerNumber > 11000) {
 
-                System.out.println("\n\t\t\t\t🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆");
-                System.out.println("\t\t\t\t\t\033[35mChúc mừng Quý khách đã chiến thắng cuộc đấu giá với giá " + playerNumber + "\033[0m");
-                System.out.println("\t\t\t\t🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇");
+                System.out.println("🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆");
+                System.out.println("033[35mChúc mừng Quý khách đã chiến thắng cuộc đấu giá với giá " + playerNumber + "\033[0m");
+                System.out.println("🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇🎆🎇");
 
                 Thread.sleep(2000);
                 pay();
@@ -464,9 +493,9 @@ public class PaymentView {
 
             if (computerNumber > 11000) {
 
-                System.out.println("\n\t\t\t\t⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️");
-                System.out.println("\t\t\t\t\033[35mChúc mừng Thương nhân " + selectedComputer + " đã chiến thắng cuộc đấu giá với giá " + computerNumber + "\033[0m");
-                System.out.println("\t\t\t\t⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️");
+                System.out.println("⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️");
+                System.out.println("\033[35mChúc mừng Thương nhân " + selectedComputer + " đã chiến thắng cuộc đấu giá với giá " + computerNumber + "\033[0m");
+                System.out.println("⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️⚰️");
 
                 Thread.sleep(2000);
                 System.out.println("\033[33m\uD83D\uDC80════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\uD83D\uDC80\033[0m");
