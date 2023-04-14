@@ -25,8 +25,8 @@ public class ProductView {
         int id;
         while (true) {
             Scanner input = new Scanner(System.in);
-            System.out.println("Nhập mã cổ vật");
-            System.out.print(" ═╬════► ");
+            System.out.println("Nhập mã cổ vật: ");
+            System.out.print("\t➺ ");
             try {
                 id = input.nextInt();
                 if (id > 0) {
@@ -45,6 +45,44 @@ public class ProductView {
             }
         }
 
+//        int id;
+//        int maxId = 0; // thêm biến để lưu trữ id lớn nhất
+//
+//        if (!productService.getProducts().isEmpty()) { // nếu danh sách không rỗng
+//            for (Product product : productService.getProducts()) {
+//                if (product.getId() > maxId) {
+//                    maxId = product.getId(); // tìm cổ vật có id lớn nhất
+//                }
+//            }
+//        }
+//
+//        id = maxId + 1; // tạo id mới bằng cách cộng thêm 1 vào id lớn nhất
+//
+//        Scanner input = new Scanner(System.in);
+//        System.out.println("Nhập mã cổ vật");
+//        System.out.print(" ═╬════► ");
+//        try {
+//            //id = input.nextInt(); // bỏ dòng này đi
+//            if (id > 0) {
+//                if (productService.existProduct(id)) {
+//                    System.out.println(" \uD83D\uDC80 mã này đã tồn tại \uD83D\uDC80");
+//                } else {
+//                    // Thêm id mới vào sản phẩm
+//                    Product product = new Product();
+//                    product.setId(id);
+//                    // Thêm các thông tin khác của sản phẩm ở đây
+//                    // ...
+//                    productService.add(product);
+//                    System.out.println(" \uD83D\uDC4D Thêm thành công sản phẩm có mã " + id + " \uD83D\uDC4D");
+//                }
+//            } else {
+//                System.out.println("\t \uD83D\uDC80 Số lượng phải lớn hơn 0 \uD83D\uDC80");
+//                System.out.println();
+//            }
+//        } catch (Exception e) {
+//            System.out.println("\t \uD83D\uDC80 Số lượng phải là 1 số \uD83D\uDC80");
+//            System.out.println();
+//        }
 
 
         PType type = null;
