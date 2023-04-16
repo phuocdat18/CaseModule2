@@ -174,7 +174,7 @@ public class PaymentView {
         }
 
         System.out.println("\u001B[35m════════════════════════════════════════\u001B[0m");
-        System.out.println("Số tiền cần thanh toán: " + format.format(sum));
+        System.out.println("Tổng đơn hàng: " + format.format(sum));
         System.out.println("\u001B[35m════════════════════════════════════════\u001B[0m\n\n");
         afterPay();
     }

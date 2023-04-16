@@ -7,7 +7,7 @@ import java.util.List;
 
 public class ProductService implements IProductService{
     List<Product> productList = new ArrayList<>();
-    public static  String path = "Case/src/main/java/data/product.csv";
+    public static  String path = "src/main/java/data/product.csv";
 
     @Override
     public void add(Product newProduct) {

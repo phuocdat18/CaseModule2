@@ -7,7 +7,7 @@ import java.util.List;
 
 public class PaymentService extends ProductService implements IPaymentService {
     List<Payment> paymentList = new ArrayList<>();
-    public static String path = "Case/src/main/java/data/payment.csv";
+    public static String path = "src/main/java/data/payment.csv";
 
     @Override
     public List<Payment> getPayment() {
