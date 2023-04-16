@@ -18,9 +18,8 @@ public enum Role {
     }
 
     public static Role fromValue(String value){
-        Role[] values = values();
-        for (Role role:values) {
-            if (role.value.equals(value))
+        for (Role role:values()) {
+            if (role.getValue().equals(value))
                 return role;
         }
         throw new IllegalArgumentException("invalid");

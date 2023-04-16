@@ -25,12 +25,12 @@ public class Product {
     public Product(String raw) {
         String [] strings = raw.split(";");
         this.id = Integer.parseInt(strings[0]);
-        this.type = PType.valueOf(strings[1]);
+        this.type = PType.fromValue1(strings[1]);
         this.name = strings[2];
         this.quantity = Integer.parseInt(strings[3]);
         this.price = Long.parseLong((strings[4]));
         this.description = strings[5];
-        this.status = Status.valueOf(strings[6]);
+        this.status = Status.getValue1(strings[6]);
     }
 
     public int getId() {
@@ -91,6 +91,6 @@ public class Product {
 
     @Override
     public String toString() {
-        return id + ";" + type + ";" + name + ";" + quantity + ";" + price + ";" + description + ";" + status;
+        return id + ";" + type.getValue() + ";" + name + ";" + quantity + ";" + price + ";" + description + ";" + status.getValue();
     }
 }

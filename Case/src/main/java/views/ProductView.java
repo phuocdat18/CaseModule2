@@ -6,6 +6,7 @@ import model.Status;
 import utils.PriceAscending;
 import utils.PriceDescending;
 import services.ProductService;
+
 import java.text.DecimalFormat;
 import java.util.List;
 import java.util.Scanner;
@@ -23,69 +24,18 @@ public class ProductView {
 
     public void add() throws InterruptedException {
         int id;
-        while (true) {
-            Scanner input = new Scanner(System.in);
-            System.out.println("Nhập mã cổ vật: ");
-            System.out.print("\t➺ ");
-            try {
-                id = input.nextInt();
-                if (id > 0) {
-                    if (productService.existProduct(id)) {
-                        System.out.println(" \uD83D\uDC80 mã này đã tồn tại \uD83D\uDC80");
-                    } else {
-                        break;
-                    }
-                } else {
-                    System.out.println("\t \uD83D\uDC80 Số lượng phải lớn hơn 0 \uD83D\uDC80");
-                    System.out.println();
+        int maxId = 0;
+        if (!productService.getProducts().isEmpty()) {
+            for (Product product : productService.getProducts()) {
+                if (product.getId() > maxId) {
+                    maxId = product.getId();
                 }
-            } catch (Exception e) {
-                System.out.println("\t \uD83D\uDC80 Số lượng phải là 1 số \uD83D\uDC80");
-                System.out.println();
             }
         }
+        id = maxId + 1;
+        System.out.println(" \uD83D\uDC4D Thêm thành công đồ vật có mã " + id + " \uD83D\uDC4D");
 
-//        int id;
-//        int maxId = 0; // thêm biến để lưu trữ id lớn nhất
-//
-//        if (!productService.getProducts().isEmpty()) { // nếu danh sách không rỗng
-//            for (Product product : productService.getProducts()) {
-//                if (product.getId() > maxId) {
-//                    maxId = product.getId(); // tìm cổ vật có id lớn nhất
-//                }
-//            }
-//        }
-//
-//        id = maxId + 1; // tạo id mới bằng cách cộng thêm 1 vào id lớn nhất
-//
-//        Scanner input = new Scanner(System.in);
-//        System.out.println("Nhập mã cổ vật");
-//        System.out.print(" ═╬════► ");
-//        try {
-//            //id = input.nextInt(); // bỏ dòng này đi
-//            if (id > 0) {
-//                if (productService.existProduct(id)) {
-//                    System.out.println(" \uD83D\uDC80 mã này đã tồn tại \uD83D\uDC80");
-//                } else {
-//                    // Thêm id mới vào sản phẩm
-//                    Product product = new Product();
-//                    product.setId(id);
-//                    // Thêm các thông tin khác của sản phẩm ở đây
-//                    // ...
-//                    productService.add(product);
-//                    System.out.println(" \uD83D\uDC4D Thêm thành công sản phẩm có mã " + id + " \uD83D\uDC4D");
-//                }
-//            } else {
-//                System.out.println("\t \uD83D\uDC80 Số lượng phải lớn hơn 0 \uD83D\uDC80");
-//                System.out.println();
-//            }
-//        } catch (Exception e) {
-//            System.out.println("\t \uD83D\uDC80 Số lượng phải là 1 số \uD83D\uDC80");
-//            System.out.println();
-//        }
-
-
-        PType type = null;
+        String type = null;
         int luachon;
         while (true) {
             boolean check = false;
@@ -101,19 +51,19 @@ public class ProductView {
                 luachon = Integer.parseInt(scanner.nextLine());
                 switch (luachon) {
                     case 1:
-                        type = PType.EUROPE;
+                        type = PType.EUROPE.getValue();
                         check = true;
                         break;
                     case 2:
-                        type = PType.ASIA;
+                        type = PType.ASIA.getValue();
                         check = true;
                         break;
                     case 3:
-                        type = PType.AMERICA;
+                        type = PType.AMERICA.getValue();
                         check = true;
                         break;
                     case 4:
-                        type = PType.AFRICA;
+                        type = PType.AFRICA.getValue();
                         check = true;
                         break;
                     default:
@@ -177,10 +127,11 @@ public class ProductView {
         System.out.print(" ═╬════► ");
         String description = scanner.nextLine();
         Status status = Status.SOLD;
-        Product product = new Product(id, type, name, quantity, price, description, status);
+        Product product = new Product(id, PType.fromValue1(type), name, quantity, price, description, status);
         productService.add(product);
         System.out.println("✔ Bạn đã thêm cổ vật thành công ✔\n");
-        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+        System.out.println("\u001B[35m════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+        productService.checkExist();
         menu.boss();
     }
 
@@ -294,8 +245,8 @@ public class ProductView {
             }
             boolean found = false;
             List<Product> products = productService.getProducts();
-            System.out.println("Danh sách cổ vật");
-            System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+            System.out.println("═╬════► Danh sách cổ vật");
+            System.out.println("\u001B[35m════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
             System.out.printf("\t\t\t\t\u001B[36m%-10s %-25s %-30s %-15s %-25s %-25s\u001B[0m\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
             for (Product product : products) {
                 if (product.getType().equalsIgnoreCase(type)) {
@@ -306,7 +257,7 @@ public class ProductView {
             if (!found) {
                 System.out.println(" Không có cổ vật này");
             }
-            System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+            System.out.println("\u001B[35m════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
             menu.guest();
         } catch (NumberFormatException e) {
             System.out.println("Lựa chọn không hợp lệ!");
@@ -348,8 +299,8 @@ public class ProductView {
             }
             boolean found = false;
             List<Product> products = productService.getProducts();
-            System.out.println("Danh sách cổ vật");
-            System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+            System.out.println("═╬════► Danh sách cổ vật");
+            System.out.println("\u001B[35m════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
             System.out.printf("\t\t\t\t\u001B[36m%-10s %-25s %-30s %-15s %-25s %-25s\u001B[0m\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
             for (Product product : products) {
                 if (product.getType().equalsIgnoreCase(type)) {
@@ -360,7 +311,7 @@ public class ProductView {
             if (!found) {
                 System.out.println(" Không có cổ vật này");
             }
-            System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+            System.out.println("\u001B[35m════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
             menu.boss();
         } catch (NumberFormatException e) {
             System.out.println("Lựa chọn không hợp lệ!");
@@ -374,8 +325,8 @@ public class ProductView {
         String name = scanner.nextLine().toUpperCase();
         boolean found = false;
         List<Product> p = productService.getProducts();
-        System.out.println("Danh sách cổ vật");
-        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+        System.out.println("═╬════► Danh sách cổ vật");
+        System.out.println("\u001B[35m════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
         System.out.printf("\u001B[36m%-10s %-25s %-30s %-15s %-25s %-25s\u001B[0m\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "số lượng", "giá", "trạng thái");
         for (Product product : p) {
             if (product.getName().toUpperCase().contains(name)) {
@@ -387,7 +338,7 @@ public class ProductView {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  Không có cổ vật này ");
             menu.FindBoss();
         }
-        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+        System.out.println("\u001B[35m════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
         menu.boss();
     }
 
@@ -403,8 +354,8 @@ public class ProductView {
 
         boolean found = false;
         List<Product> p = productService.getProducts();
-        System.out.println("Danh sách cổ vật");
-        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+        System.out.println("═╬════► Danh sách cổ vật");
+        System.out.println("\u001B[35m════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
         System.out.printf("\u001B[36m%-10s %-25s %-30s %-15s %-25s %-25s\u001B[0m\n", "Mã", "Nguồn gốc cổ vật", "Tên cổ vật", "Số lượng", "Giá", "Trạng thái");
         for (Product product : p) {
             if (product.getName().toUpperCase().contains(name)) {
@@ -414,9 +365,9 @@ public class ProductView {
         }
         if (!found) {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  Không có cổ vật này ");
-            menu.FindGuest();
+            menu.auction();
         }
-        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+        System.out.println("\u001B[35m════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
         menu.guest();
     }
 
@@ -511,9 +462,10 @@ public class ProductView {
                 break;
             }
         }
+
         productService.update(id, update);
         System.out.println("✔ Bạn đã cập nhật cổ vật thành công ✔\n");
-        System.out.println("\u001B[35m═════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
+        System.out.println("\u001B[35m════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
         productService.checkExist();
         menu.boss();
     }
@@ -572,7 +524,7 @@ public class ProductView {
     public void setStatus(Product product) {
         System.out.println("\u001B[35m╔════════════════════════\u001B[0m\u001B[36mSET STATUS\u001B[0m\u001B[35m═══════════════════════╗\u001B[0m");
         System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. SOLD                                               \u001B[0m\u001B[35m║\u001B[0m");
-        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. NOTSOLD                                            \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. AVAILABLE                                            \u001B[0m\u001B[35m║\u001B[0m");
         System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
         System.out.println("Chọn Status: ");
         System.out.print(" ═╬════► ");
@@ -586,7 +538,7 @@ public class ProductView {
                     product.setStatus(Status.SOLD);
                     break;
                 case 2:
-                    product.setStatus(Status.NOTSOLD);
+                    product.setStatus(Status.AVAILABLE);
                     break;
                 default:
                     System.out.println("Nhập không đúng! Vui lòng nhập lại");

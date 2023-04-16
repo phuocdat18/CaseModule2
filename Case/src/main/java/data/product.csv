@@ -1,9 +1,9 @@
-1;EUROPE;Vương miện nữ hoàng Elizabeth;5;100000;Đội che nắng bao phê;NOTSOLD
-2;ASIA;Quần đùi Tần Thủy Hoàng;3;25000;Mặc bao mát;NOTSOLD
-3;ASIA;Máy massage cầm tay thời đồ đá;0;50000;Thoải mái tinh thần thư giản gân cốt;SOLD
-4;AFRICA;Tượng thầy tu Kaaper;1;30000;Tượng 4.500 năm tuổi của một vị thầy tu Ai Cập;SOLD
-5;AFRICA;Bình rượu Ai Cập bằng bạc;2;2500;Chiếc bình bằng bạc có vào khoảng TK 1 TCN;SOLD
-6;EUROPE;Hoa tai Hy Lạp;2;1000;Đôi hoa tai bằng vàng thời Hy Lạp cổ năm 300 TCN.;SOLD
-7;AFRICA;Tượng mèo Ai Cập;1;49999;Tượng mèo có niên đại khoảng năm 332 TCN;SOLD
-8;EUROPE;Vòng tay Byzantium;2;30000;Vòng tay bằng vàng thời Byzantium năm 400 TCN.;SOLD
-2;EUROPE;đá;1;545656;đẹp quá;SOLD
+1;EUROPE;Vương miện nữ hoàng Elizabeth;0;100000;Đội che nắng bao phê;AVAILABLE
+2;ASIA;Quần đùi Tần Thủy Hoàng;2;25000;Mặc bao mát;AVAILABLE
+3;ASIA;Máy massage cầm tay thời đồ đá;5;50000;Thoải mái tinh thần thư giản gân cốt;AVAILABLE
+4;AFRICA;Tượng thầy tu Kaaper;5;30000;Tượng 4.500 năm tuổi của một vị thầy tu Ai Cập;AVAILABLE
+5;AFRICA;Bình rượu Ai Cập bằng bạc;5;2500;Chiếc bình bằng bạc có vào khoảng TK 1 TCN;AVAILABLE
+6;EUROPE;Hoa tai Hy Lạp;5;1000;Đôi hoa tai bằng vàng thời Hy Lạp cổ năm 300 TCN.;AVAILABLE
+7;AFRICA;Tượng mèo Ai Cập;5;49999;Tượng mèo có niên đại khoảng năm 332 TCN;AVAILABLE
+8;EUROPE;Vòng tay Byzantium;2;30000;Vòng tay bằng vàng thời Byzantium năm 400 TCN.;AVAILABLE
+9;ASIA;Vòng tay;5;20000;Xịn xò;AVAILABLE

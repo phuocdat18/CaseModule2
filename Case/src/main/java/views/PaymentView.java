@@ -1,5 +1,6 @@
 package views;
 
+import model.OrderItem;
 import model.Payment;
 import model.Product;
 import services.PaymentService;
@@ -46,7 +47,7 @@ public class PaymentView {
         while (true) {
 
 
-            System.out.println("═╬════► Nhập mã loại Cổ vật muốn mua");
+            System.out.println("Nhập mã loại Cổ vật muốn mua");
             System.out.print(" ═╬════► ");
             try {
                 id1 = Integer.parseInt(scanner.nextLine());
@@ -57,7 +58,7 @@ public class PaymentView {
                             product = paymentService.findProductbyID(id1);
                             break;
                         } else {
-                            System.out.println("═╬════► Cổ vật này không có tại đây");
+                            System.out.println("Cổ vật này không có tại đây");
                             menu.auction();
                             break;
                         }
@@ -76,7 +77,7 @@ public class PaymentView {
             }
         }
         while (true) {
-            System.out.println("═╬════► Nhập số lượng cổ vật: ");
+            System.out.println("Nhập số lượng cổ vật: ");
             System.out.print(" ═╬════► ");
             realQuantity = product.getQuantity();
             try {
@@ -156,14 +157,25 @@ public class PaymentView {
         System.out.println("Số điện thoại: " + list.get(0).getPhoneNumber());
         System.out.println("Địa chỉ: " + list.get(0).getAddress());
         System.out.println("Danh sách sản phẩm mua");
+
+//        System.out.printf("\u001B[35m║\u001B[0m \u001B[36m %-30s %-15s %-25s \u001B[0m\u001B[35m║\u001B[0m\n",  "Tên sản phẩm", "Số lượng", "Giá");
+//        for (OrderItem orderItem : list.get(0).getOrderItems()) {
+//            System.out.printf("\u001B[35m║\u001B[0m \u001B[36m %-30s %-15d %-25s \u001B[0m\u001B[35m║\u001B[0m\n", orderItem.getProduct().getName(), orderItem.getQuantity(), format.format(orderItem.getProduct().getPrice()));
+//        }
+
         long sum = 0;
         for (int i = 0; i < list.size(); i++) {
             long total;
             total = list.get(i).getQuantity() * productService.findProductbyID(list.get(i).getId()).getPrice();
-            System.out.printf("Tổng tiền %s là : %s\n", productService.findProductbyID(list.get(i).getId()).getName(), format.format(total));
             sum += total;
-
         }
+        System.out.printf("\u001B[35m║\u001B[0m \u001B[36m %-30s %-15s %-25s \u001B[0m\u001B[35m║\u001B[0m\n",  "Tên sản phẩm", "Số lượng", "Giá");
+        for (int i = 0; i < list.size(); i++) {
+            System.out.printf("\u001B[35m║\u001B[0m \u001B[36m %-30s %-15d %-25s \u001B[0m\u001B[35m║\u001B[0m\n", productService.findProductbyID(list.get(i).getId()).getName(), list.get(i).getQuantity(), format.format(list.get(i).getQuantity() * productService.findProductbyID(list.get(i).getId()).getPrice()));
+        }
+
+
+
 
         System.out.println("\u001B[35m════════════════════════════════════════\u001B[0m");
         System.out.println("Số tiền cần thanh toán: " + format.format(sum));
@@ -172,9 +184,9 @@ public class PaymentView {
     }
 
     public void showAllIncome() throws InterruptedException {
-        System.out.println("\u001B[35m╔════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╦════════════════════════════════════════════════════╗\u001B[0m");
-        System.out.printf("\u001B[35m║                                     \u001B[36m              TỔNG DOANH THU \u001B[0m                                                      \u001B[35m║\u001B[0m \u001B[36m                  %-13s  \u001B[0m                  \u001B[35m║\u001B[0m", format.format(paymentService.showTotal()));
-        System.out.println("\n\u001B[35m╚════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════╩════════════════════════════════════════════════════╝\u001B[0m");
+        System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════════════════════════════════╦════════════════════════════════════════╗\u001B[0m");
+        System.out.printf("\u001B[35m║                                    \u001B[36mTỔNG DOANH THU \u001B[0m                                  \u001B[35m║\u001B[0m    \u001B[36m            %-13s  \u001B[0m         \u001B[35m║\u001B[0m", format.format(paymentService.showTotal()));
+        System.out.println("\n\u001B[35m╚═════════════════════════════════════════════════════════════════════════════════════╩════════════════════════════════════════╝\u001B[0m");
         menu.boss();
     }
 
@@ -214,7 +226,7 @@ public class PaymentView {
         System.out.println("\u001B[35m╔═════════════════════════════════════════════════════════╗\u001B[0m");
         System.out.println("\u001B[35m║\u001B[0m\u001B[36m   Bạn có muốn thanh toán đơn hàng này không?            \u001B[0m\u001B[35m║\u001B[0m");
         System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. Thanh toán                                         \u001B[0m\u001B[35m║\u001B[0m");
-        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. Mua lại                                            \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. Mua thêm                                           \u001B[0m\u001B[35m║\u001B[0m");
         System.out.println("\u001B[35m║\u001B[0m\u001B[36m   3. Quay lại menu                                      \u001B[0m\u001B[35m║\u001B[0m");
         System.out.println("\u001B[35m║\u001B[0m\u001B[36m   4. Thoát                                              \u001B[0m\u001B[35m║\u001B[0m");
         System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
@@ -227,10 +239,10 @@ public class PaymentView {
                     pay();
                     break;
                 case 2:
-                    list.clear();
                     buy();
                     break;
                 case 3:
+                    list.clear();
                     menu.guest();
                     break;
                 case 4:
@@ -284,8 +296,9 @@ public class PaymentView {
         System.out.println("\u001B[35m║\u001B[0m\u001B[36m   Hãy chọn phương thức thanh toán                       \u001B[0m\u001B[35m║\u001B[0m");
         System.out.println("\u001B[35m║\u001B[0m\u001B[36m   1. Thanh toán bằng tiền mặt                           \u001B[0m\u001B[35m║\u001B[0m");
         System.out.println("\u001B[35m║\u001B[0m\u001B[36m   2. Thanh toán bằng hình thức chuyển khoản             \u001B[0m\u001B[35m║\u001B[0m");
-        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   3. Quay lại menu                                      \u001B[0m\u001B[35m║\u001B[0m");
-        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   4. Thoát                                              \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   3. Mua thêm                                           \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   4. Quay lại menu                                      \u001B[0m\u001B[35m║\u001B[0m");
+        System.out.println("\u001B[35m║\u001B[0m\u001B[36m   5. Thoát                                              \u001B[0m\u001B[35m║\u001B[0m");
         System.out.println("\u001B[35m╚═════════════════════════════════════════════════════════╝\u001B[0m");
         System.out.print("\t➺ ");
         int options1;
@@ -298,9 +311,13 @@ public class PaymentView {
                 iBanking();
                 break;
             case 3:
-                menu.guest();
+                buy();
                 break;
             case 4:
+                list.clear();
+                menu.guest();
+                break;
+            case 5:
                 menu.exit();
                 break;
             default:
@@ -312,12 +329,11 @@ public class PaymentView {
                     money = scanner.nextLine();
                 }
                 break;
-
-
-
         }
     }
     public void tienMat() throws InterruptedException {
+        Thread.sleep(2000);
+        System.out.println("\t\t\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80 Thanh toán thành công \uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80");
         afterPay();
     }
 
@@ -336,10 +352,13 @@ public class PaymentView {
             options5 = Integer.parseInt(scanner.nextLine());
             switch (options5) {
                 case 1:
+                    Thread.sleep(2000);
+                    System.out.println("\t\t\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80 Thanh toán thành công \uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80");
                     afterPay();
                     break;
                 case 2:
-                    Menu.guest();
+                    list.clear();
+                    menu.guest();
                     break;
                 default:
                     System.out.println("Nhập không đúng! Vui lòng nhập lại");
@@ -362,15 +381,7 @@ public class PaymentView {
             p.setAddress(address);
             p.setMoney(money);
         }
-        paymentService.add(list);
-        for (Payment u : list) {
-            int a = u.getId();
-            int c = u.getQuantity();
-            int b = productService.getQuantity(a);
-            productService.updateQuantity(a, b - c);
-        }
         productService.checkExist();
-        System.out.println("\t\t\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80 Thanh toán thành công \uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80\uD83D\uDC80");
         System.out.println("\n");
         System.out.println("\n");
         Thread.sleep(2000);
@@ -391,9 +402,27 @@ public class PaymentView {
                     showInformation();
                     break;
                 case 2:
+                    paymentService.add(list);
+                    for (Payment u : list) {
+                        int a = u.getId();
+                        int c = u.getQuantity();
+                        int b = productService.getQuantity(a);
+                        productService.updateQuantity(a, b - c);
+                    }
+
+
+                    list.clear();
                     menu.guest();
                     break;
                 case 3:
+
+                    paymentService.add(list);
+                    for (Payment u : list) {
+                        int a = u.getId();
+                        int c = u.getQuantity();
+                        int b = productService.getQuantity(a);
+                        productService.updateQuantity(a, b - c);
+                    }
                     menu.exit();
                     break;
                 default:

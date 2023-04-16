@@ -29,7 +29,7 @@ public class Payment {
     }
 
     public Payment(String rawPay) {
-        String[] strings = rawPay.split(",");
+        String[] strings = rawPay.split(";");
         this.id = Integer.parseInt(strings[0]);
         this.quantity = Integer.parseInt(strings[1]);
         this.name = strings[2];

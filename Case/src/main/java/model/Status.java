@@ -1,7 +1,7 @@
 package model;
 
 public enum Status {
-    NOTSOLD("NOTSOLD"), SOLD("SOLD");
+    SOLD("SOLD"), AVAILABLE("AVAILABLE");
 
     private String value;
 
@@ -15,5 +15,13 @@ public enum Status {
 
     public void setValue(String value) {
         this.value = value;
+    }
+
+    public static Status getValue1(String value){
+        for (Status status:values()) {
+            if (status.getValue().equals(value))
+                return status;
+        }
+        throw new IllegalArgumentException("invalid");
     }
 }

@@ -98,7 +98,7 @@ public class ProductService implements IProductService{
                 p.setStatus(Status.SOLD);
                 CSVUtils.write(path,productList);
             } else {
-                p.setStatus(Status.NOTSOLD);
+                p.setStatus(Status.AVAILABLE);
                 CSVUtils.write(path,productList);
             }
         }

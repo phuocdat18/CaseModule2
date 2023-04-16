@@ -33,6 +33,13 @@ public enum PType {
     public boolean equalsIgnoreCase(String other) {
         return this.toString().equalsIgnoreCase(other);
     }
+    public static PType fromValue1(String value){
+        for (PType pType : values()) {
+            if (pType.getValue().equals(value))
+                return pType;
+        }
+        throw new IllegalArgumentException("invalid");
+    }
 
 
 }
