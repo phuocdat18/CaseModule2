@@ -365,7 +365,7 @@ public class ProductView {
         }
         if (!found) {
             System.out.println("\t\t\t\t\t\t\t\t\t\t\t\t  Không có cổ vật này ");
-            menu.auction();
+            menu.auctionByName();
         }
         System.out.println("\u001B[35m════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════════\u001B[0m");
         menu.guest();
